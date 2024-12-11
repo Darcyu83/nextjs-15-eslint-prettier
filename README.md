@@ -18,7 +18,16 @@ settings > search["eol"] > set "\n"
 
 ## Eslint + Prettier
 
+### [NextJs 공식홈페이지 ESLINT 설정](https://nextjs.org/docs/app/api-reference/config/eslint)
+
 - npm install --save-dev prettier
 - npm install --save-dev prettier-plugin-tailwindcss
 
-- npm install --save-dev eslint-plugin-next
+- npm install --save-dev eslint-config-prettier
+- npm i --save-dev @next/eslint-plugin-next
+
+- 깃 스테이징 ESLINT 검사
+- npm install --save-dev husky
+- npm install --save-dev lint-staged
+  -> .lintstagedrc.js
+
