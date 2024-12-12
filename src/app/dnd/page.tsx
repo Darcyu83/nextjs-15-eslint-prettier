@@ -4,7 +4,7 @@ interface IProps {}
 
 function DND(props: IProps) {
   return (
-    <div style={{}}>
+    <div>
       <ChessBoard />
     </div>
   );

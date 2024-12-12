@@ -31,10 +31,22 @@ export default function RootLayout({
     <html lang='en'>
       <body
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className={fontOutfit.className}
+        className={`${fontOutfit.className} relative h-dvh overflow-scroll border border-blue-400`}
       >
-        <h1>NavBar</h1>
-        {children}
+        <div className='grid min-h-screen grid-cols-[300px_1fr] grid-rows-[65px_auto]'>
+          {/* Header */}
+          <header className='z-1 sticky left-0 top-0 col-span-2 flex h-[65px] items-center bg-gray-800 px-4 text-white'>
+            <h1>Header</h1>
+          </header>
+
+          {/* Aside */}
+          <aside className='z-1 sticky left-0 top-[65px] h-[calc(100vh-65px)] bg-gray-700 p-4 text-white'>
+            <p>Aside Content</p>
+          </aside>
+
+          {/* Main */}
+          <main className='bg-gray-100 p-4'>{children}</main>
+        </div>
       </body>
     </html>
   );
