@@ -12,11 +12,12 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.config({
     extends: ['next/core-web-vitals', 'next/typescript', 'prettier'],
-    settings: {
-      next: {
-        rootDir: 'src',
-      },
-    },
+    // settings: {
+    //   next: {
+    // 여러 프로젝트 함께 사용하는경우(monorepo) 1개의 next설치 시 경로 명시
+    //     rootDir: 'packages/my-app/',
+    //   },
+    // },
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',

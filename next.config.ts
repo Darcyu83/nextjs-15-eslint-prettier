@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   /* config options here */
 
   eslint: {
-    dirs: ['./src/**'],
+    // default : 전체 폴더
+    // dirs: ['./src/**'],
   },
 };
 
