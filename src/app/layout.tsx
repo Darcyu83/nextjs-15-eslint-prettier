@@ -4,6 +4,7 @@ import {
   Outfit,
 } from 'next/font/google';
 import './globals.css';
+import SideNavBar from '@/components/layout/SideNavBar';
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -40,8 +41,8 @@ export default function RootLayout({
           </header>
 
           {/* Aside */}
-          <aside className='z-1 sticky left-0 top-[65px] h-[calc(100vh-65px)] bg-gray-700 p-4 text-white'>
-            <p>Aside Content</p>
+          <aside className='z-1 sticky left-0 top-[65px] h-[calc(100vh-65px)] bg-[#444450] p-4 text-white'>
+            <SideNavBar />
           </aside>
 
           {/* Main */}
