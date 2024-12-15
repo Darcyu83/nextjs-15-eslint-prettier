@@ -1,44 +1,18 @@
 export default function Home() {
   return (
-    <div>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
-      <h1>Home</h1>
+    <div className='mt-3 flex -skew-y-12 flex-col gap-5'>
+      <h1
+        className={[
+          'relative box-border bg-slate-400 p-3 shadow-xl transition-transform',
+          'hover:translate-x-[-40px]',
+
+          'before:absolute before:left-[-40px] before:top-0 before:h-full before:w-[40px] before:origin-right before:skew-y-[45deg] before:bg-lime-200',
+          'after:absolute after:left-0 after:top-[-40px] after:h-[40px] after:w-full after:origin-bottom after:skew-x-[45deg] after:bg-purple-300',
+        ].join(' ')}
+      >
+        <span className='relative'>Home</span>
+      </h1>
+
       <h1>Home</h1>
       <h1>Home</h1>
       <h1>Home</h1>
