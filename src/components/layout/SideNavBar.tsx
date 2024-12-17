@@ -22,8 +22,9 @@ function SideNavBar(props: IProps) {
       path: '/dnd',
       icon: FileVideo,
     },
-    { id: 3, name: 'Upgrade', path: '/upgrade', icon: ShieldPlus },
-    { id: 4, name: 'Account', path: '/account', icon: CircleUser },
+    { id: 3, name: 'Schedule', path: '/schedule', icon: ShieldPlus },
+    { id: 4, name: 'Parallel', path: '/parallel', icon: CircleUser },
+    { id: 5, name: 'Intercept', path: '/intercept', icon: CircleUser },
   ] as const;
   return (
     <div className='flex justify-end pt-[40px]'>
