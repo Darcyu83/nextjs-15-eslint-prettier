@@ -1,3 +1,6 @@
+import { buttonVariants } from '@/components/ui/button';
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <div className='mt-3 flex -skew-y-12 flex-col gap-5'>
@@ -19,6 +22,13 @@ export default function Home() {
       <h1>Home</h1>
       <h1>Home</h1>
       <h1>Home</h1>
+
+      <Link
+        className={buttonVariants({ variant: 'outline' })}
+        href={'/i/login'}
+      >
+        /i/login with Link tag
+      </Link>
     </div>
   );
 }

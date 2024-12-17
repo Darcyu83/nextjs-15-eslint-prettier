@@ -25,6 +25,7 @@ function SideNavBar(props: IProps) {
     { id: 3, name: 'Schedule', path: '/schedule', icon: ShieldPlus },
     { id: 4, name: 'Parallel', path: '/parallel', icon: CircleUser },
     { id: 5, name: 'Intercept', path: '/intercept', icon: CircleUser },
+    { id: 6, name: 'User', path: '/user', icon: CircleUser },
   ] as const;
   return (
     <div className='flex justify-end pt-[40px]'>
