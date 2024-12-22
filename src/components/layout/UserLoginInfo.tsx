@@ -9,20 +9,20 @@ interface IProps {
 function UserLoginInfo({}: IProps) {
   const { data: session } = useSession();
 
-  if (session) {
+  if (session?.user) {
     return (
-      <>
+      <div className='flex items-center gap-2'>
         Signed in as {session.user.email} <br />
         <Button onClick={() => signOut()}>Sign out</Button>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      Not signed in <br />
-      <Button onClick={() => signIn()}>Sign out</Button>
-    </>
+    <div className='flex h-full items-center gap-2'>
+      <h1 className='text-nowrap text-sm'>Not signed in</h1>
+      <Button onClick={() => signIn()}>Sign In</Button>
+    </div>
   );
 }
 

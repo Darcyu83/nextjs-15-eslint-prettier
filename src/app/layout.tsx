@@ -4,10 +4,10 @@ import {
   Outfit,
 } from 'next/font/google';
 import './globals.css';
-import SideNavBar from '@/components/layout/SideNavBar';
 import NextAuthSessionProvider from '@/components/provider/NextAuthSessionProvider';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]';
+import Header from '@/components/layout/Header';
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -36,32 +36,30 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   return (
     <html lang='en'>
-      <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className={`${fontOutfit.className} relative h-dvh overflow-scroll border border-blue-400`}
-      >
-        <NextAuthSessionProvider session={session}>
-          <div className='grid min-h-screen grid-cols-[300px_1fr] grid-rows-[65px_auto]'>
+      <NextAuthSessionProvider session={session}>
+        <body
+          // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${fontOutfit.className} relative h-screen`}
+        >
+          <div className='flex flex-col gap-4'>
             {/* Header */}
-            <header className='z-1 sticky left-0 top-0 col-span-2 flex h-[65px] items-center bg-gray-800 px-4 text-white'>
-              <h1>Header</h1>
+            <header className='fixed flex h-fit min-h-[var(--layout-header-height)] w-full items-center justify-between p-2 shadow-lg'>
+              <Header />
             </header>
 
             {/* Aside */}
-            <aside className='z-1 sticky left-0 top-[65px] h-[calc(100vh-65px)] bg-[#444450] p-4 text-white'>
+            {/* <aside className='z-1 sticky left-0 top-[65px] h-[calc(100vh-65px)] bg-[#444450] p-4 text-white'>
               <SideNavBar />
-            </aside>
-            {/* Main */}
-            <main className='border bg-slate-100 p-4'>
-              <div className='flex h-40 w-full justify-end border border-blue-600'>
-                {modal}
-              </div>
+            </aside> */}
 
+            {/* Main */}
+            <main className='mt-[var(--layout-header-height)] h-fit w-full p-4'>
               {children}
             </main>
           </div>
-        </NextAuthSessionProvider>
-      </body>
+          {/* <div className='absolute'>{modal}</div> */}
+        </body>
+      </NextAuthSessionProvider>
     </html>
   );
 }

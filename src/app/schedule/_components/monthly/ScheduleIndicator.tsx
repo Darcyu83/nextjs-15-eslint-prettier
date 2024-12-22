@@ -1,10 +1,4 @@
-interface IProps {
-
-
-  
-
-
-}
+interface IProps {}
 
 function ScheduleIndicator(props: IProps) {
   return (
