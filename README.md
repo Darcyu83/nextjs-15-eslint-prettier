@@ -30,3 +30,8 @@ settings > search["eol"] > set "\n"
 - npm install --save-dev husky
 - npm install --save-dev lint-staged
   -> .lintstagedrc.js
+
+### icon
+
+- lucide
+  npm install lucide-react

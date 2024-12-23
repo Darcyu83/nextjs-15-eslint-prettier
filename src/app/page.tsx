@@ -1,7 +1,5 @@
 'use client';
 
-import Hamburger from '@/components/animation/Hamburger';
-
 export default function Home() {
   return (
     <div className='flex flex-col gap-5'>
@@ -10,8 +8,6 @@ export default function Home() {
       <h1>Home</h1>
       <h1>Home</h1>
       <h1>Home</h1>
-
-      <Hamburger />
 
       <h1>Home</h1>
 

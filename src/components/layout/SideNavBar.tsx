@@ -3,18 +3,24 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MenuOption } from './menuConfig';
+import { useUIStore } from '@/store';
 
 interface IProps {}
 
 function SideNavBar(props: IProps) {
   const path = usePathname();
 
+  const { isMenuOpen, toggleMenu } = useUIStore();
+
   return (
-    <div className='flex justify-end pt-[40px]'>
+    <div
+      className='flex justify-end pt-[40px]'
+      style={{ visibility: isMenuOpen ? 'visible' : 'hidden' }}
+    >
       <ul className='flex w-[200px] -skew-y-12 flex-col shadow-[-100px_0px_20px_rgba(0,0,0,0.5)]'>
         {MenuOption.map((config, idx) => {
           return (
-            <li key={config.id}>
+            <li key={'side_nav_' + idx}>
               <Link href={config.path} className='group'>
                 <div
                   style={{ zIndex: MenuOption.length - idx + 1 }}

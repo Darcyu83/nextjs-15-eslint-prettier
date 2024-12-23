@@ -8,6 +8,7 @@ import NextAuthSessionProvider from '@/components/provider/NextAuthSessionProvid
 import { getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]';
 import Header from '@/components/layout/Header';
+import SideNavBar from '@/components/layout/SideNavBar';
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -39,11 +40,11 @@ export default async function RootLayout({
       <NextAuthSessionProvider session={session}>
         <body
           // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          className={`${fontOutfit.className} relative h-screen`}
+          className={`${fontOutfit.className} relative h-screen border border-red-400`}
         >
           <div className='flex flex-col gap-4'>
             {/* Header */}
-            <header className='fixed flex h-fit min-h-[var(--layout-header-height)] w-full items-center justify-between p-2 shadow-lg'>
+            <header className='fixed z-20 flex h-fit min-h-[var(--layout-header-height)] w-full items-center justify-between bg-white p-2 shadow-lg'>
               <Header />
             </header>
 
@@ -57,7 +58,12 @@ export default async function RootLayout({
               {children}
             </main>
           </div>
+
           {/* <div className='absolute'>{modal}</div> */}
+
+          <div className='absolute right-4 top-0 z-10 flex h-screen w-fit items-end py-9'>
+            <SideNavBar />
+          </div>
         </body>
       </NextAuthSessionProvider>
     </html>
