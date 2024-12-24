@@ -1,5 +1,4 @@
 'use client';
-import { buttonVariants } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -8,59 +7,36 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 
-import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { z } from 'zod';
+import {
+  regTierSchema,
+  TRegTierFormInput,
+} from './_components/form/validation';
+import RegTierForm from './_components/form';
+import TierDnd from './_components/dnd';
+import { Button } from '@/components/ui/button';
 
 interface IProps {}
 
-const formSchema = z.object({
-  title: z
-    .string()
-    .min(2, { message: 'Title must be at least 2 charaters' })
-    .max(10, { message: 'Title cannot be longger than 10 charaters' }),
-
-  category: z
-    .string()
-    .min(2, { message: 'category must be at least 2 charaters' })
-    .max(20, { message: 'category cannot be longger than 20 charaters' }),
-
-  desc: z
-    .string()
-    .min(2, { message: 'category must be at least 2 charaters' })
-    .max(50, { message: 'desc cannot be longger than 50 charaters' }),
-});
-type TFormInput = z.infer<typeof formSchema>;
-
 function TierCreatePage(props: IProps) {
-  const form = useForm<TFormInput>({
-    resolver: zodResolver(formSchema),
+  const { toast } = useToast();
+
+  const form = useForm<TRegTierFormInput>({
+    resolver: zodResolver(regTierSchema),
     defaultValues: {
       title: '',
-      category: '',
+      category: 'Game',
       desc: '',
     },
   });
 
-  const { toast } = useToast();
-  const onSubmit: SubmitHandler<TFormInput> = (inputValues) => {
+  const onSubmit: SubmitHandler<TRegTierFormInput> = (inputValues) => {
     console.log(inputValues);
-
     toast({
-      variant: 'destructive', // "default"
+      variant: 'destructive',
       title: 'Input Values',
       description: (
         <pre>
@@ -72,85 +48,20 @@ function TierCreatePage(props: IProps) {
 
   return (
     <div>
-      <h1>Create a Template</h1>
-
       <Card>
         <CardHeader>
-          <CardTitle>Card Title</CardTitle>
+          <CardTitle>Create a Template</CardTitle>
           <CardDescription>Card Description</CardDescription>
         </CardHeader>
+
         <CardContent>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className='border border-violet-400'
-            >
-              <div className='space-y-8'>
-                {/* Title */}
-                <FormField
-                  control={form.control}
-                  name='title'
-                  render={({ field, fieldState, formState }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel>Template Title</FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          This is the title shown on the Tier List
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
+          <RegTierForm form={form} onSubmit={onSubmit} />
 
-                {/* Category */}
-                <FormField
-                  control={form.control}
-                  name='category'
-                  render={({ field, fieldState, formState }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel>Category</FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                        <FormDescription>Category</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
+          <TierDnd />
 
-                {/* Description */}
-                <FormField
-                  control={form.control}
-                  name='desc'
-                  render={({ field, fieldState, formState }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel>Category</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            rows={4}
-                            className='resize-none'
-                            placeholder='Type your message here.'
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormDescription>Category</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-
-                <input className={buttonVariants()} type='submit' />
-              </div>
-            </form>
-          </Form>
+          <Button form='reg_tier_form' type='submit'>
+            Submit
+          </Button>
         </CardContent>
         <CardFooter>
           <p>Card Footer</p>
