@@ -1,11 +1,11 @@
-interface IProps {}
+import { ReactNode } from 'react';
 
-function TierLayout(props: IProps) {
-  return (
-    <div style={{}}>
-      <h1>TierLayout</h1>
-    </div>
-  );
+interface IProps {
+  children: ReactNode;
+}
+
+function TierLayout({ children }: IProps) {
+  return <div>{children}</div>;
 }
 
 export default TierLayout;
