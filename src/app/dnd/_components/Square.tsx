@@ -30,6 +30,7 @@ function Square({
       drop: () => {
         setKnightPosition([x, y]);
       },
+      
       collect: (monitor) => {
         return { isOver: !!monitor.isOver() };
       },
