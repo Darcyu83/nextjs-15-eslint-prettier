@@ -1,12 +1,12 @@
 import TierRow from './TierRow';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import useTierDnd from './hooks/useTierDnd';
+import useTierDndData from './hooks/useTierDndData';
 
 interface IProps {}
 
 function TierDnd(props: IProps) {
-  const { data, onDrop } = useTierDnd();
+  const { data, dndDataFns } = useTierDndData();
 
   return (
     <div>
@@ -18,9 +18,9 @@ function TierDnd(props: IProps) {
             return (
               <TierRow
                 key={'t_row_' + rowConfig.title + index}
-                rawIndex={index}
+                rowIndex={index}
                 rowConfig={rowConfig}
-                onDrop={onDrop}
+                dndDataFns={dndDataFns}
               />
             );
           })}

@@ -1,20 +1,13 @@
-import TierDndDragCard from './TierDndDragCard';
-import TierDndDropZone from './TierDndDropZone';
-import { TierDndCard, TierDndDropProps, TierDndRow } from './types';
+import { TierDndDataFns, TierDndRow } from './hooks/type';
+import TierDragDroppableCard from './TierDragDroppableCard';
 
 interface IProps {
-  rawIndex: number;
+  rowIndex: number;
   rowConfig: TierDndRow;
-  onDrop: (
-    nextRowIndex: number,
-    nextItemIndex: number,
-    item: TierDndDropProps,
-  ) => void;
+  dndDataFns: TierDndDataFns;
 }
 
-function TierRow({ rawIndex, rowConfig, onDrop }: IProps) {
-  const items: TierDndCard[] =
-    rowConfig.items.length === 0 ? [...Array(10)] : rowConfig.items;
+function TierRow({ rowIndex, rowConfig, dndDataFns }: IProps) {
   return (
     <div className='flex gap-2'>
       <div
@@ -26,23 +19,22 @@ function TierRow({ rawIndex, rowConfig, onDrop }: IProps) {
         </h1>
       </div>
 
-      <TierDndDropZone
-        rowTitle={rowConfig.title}
-        rowIndex={rawIndex}
-        onDrop={onDrop}
+      <div
+        key={'tier_' + rowIndex + '_' + rowConfig.title}
+        className='flex h-fit flex-wrap gap-2'
       >
-        {items.map((item, index) => {
+        {rowConfig.items.map((item, index) => {
           return (
-            <TierDndDragCard
+            <TierDragDroppableCard
               key={index}
-              rowIndex={rawIndex}
+              rowIndex={rowIndex}
               itemIndex={index}
               dndItemConfig={item}
-              onDrop={onDrop}
+              dndDataFns={dndDataFns}
             />
           );
         })}
-      </TierDndDropZone>
+      </div>
     </div>
   );
 }

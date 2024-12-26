@@ -1,17 +1,15 @@
 import { useDrag } from 'react-dnd';
 import { TierDndItemTypes } from '../contants';
-import { TierDndDropProps } from '../types';
+
+import { TierDndDataFns, TierDndDropProps } from './type';
 
 interface IProps {
   dropItemProps: TierDndDropProps;
-  onDrop: (
-    nextRowIndex: number,
-    nextItemIndex: number,
-    item: TierDndDropProps,
-  ) => void;
+
+  onCancelDrag: TierDndDataFns['onCancelDrag'];
 }
 
-function useTierDndDrag({ dropItemProps, onDrop }: IProps) {
+function useTierDndDrag({ dropItemProps, onCancelDrag }: IProps) {
   const [{ isDragging }, drag, previewRef] = useDrag({
     type: TierDndItemTypes.TIER_DND_ITEM,
     item: dropItemProps,
@@ -19,12 +17,9 @@ function useTierDndDrag({ dropItemProps, onDrop }: IProps) {
       return { isDragging: monitor.isDragging() };
     },
     end: (originDropItemProps, monitor) => {
+      console.log('드래그 해서 드랍까지 진행됬나? ', monitor.didDrop());
       if (!monitor.didDrop()) {
-        onDrop(
-          originDropItemProps.rowIndex,
-          originDropItemProps.itemIndex,
-          originDropItemProps,
-        );
+        onCancelDrag();
       }
     },
   });
